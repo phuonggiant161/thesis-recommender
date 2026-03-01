@@ -1,0 +1,35 @@
+
+experiment:
+  dataset: amazon_baby
+
+  data_config:
+    strategy: dataset
+    dataset_path: C:/Users/admin/Documents/Study/Master/Dissertation/dataset.tsv
+
+  splitting:
+    test_splitting:
+      strategy: temporal_hold_out
+      folds: 1
+      test_ratio: 0.2
+      seed: 42
+
+    validation_splitting:
+      strategy: random_subsampling
+      folds: 1
+      validation_ratio: 0.1
+      seed: 42
+
+  top_k: 10
+
+  evaluation:
+    cutoffs: [10]
+    simple_metrics: [nDCG, Recall, HR, Precision, MAP, MRR]
+
+  gpu: -1
+
+  models:
+    PureSVD:
+      meta:
+        save_recs: True
+      factors: 200
+
