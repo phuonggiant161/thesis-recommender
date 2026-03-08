@@ -1,0 +1,36 @@
+
+experiment:
+  dataset: amazon_baby
+
+  data_config:
+    strategy: dataset
+    dataset_path: C:/Users/admin/Documents/Study/Master/Dissertation/baby_interaction.tsv
+  
+  prefiltering:
+  - strategy: iterative_k_core
+    core: 5
+
+  splitting:
+    test_splitting:
+      strategy: temporal_hold_out
+      test_ratio: 0.2
+
+  top_k: 10
+
+  evaluation:
+    cutoffs: [10]
+    simple_metrics: [nDCG, Recall, HR, Precision, MAP, MRR]
+
+  gpu: -1
+
+  models:
+    FunkSVD:
+      meta:
+        save_recs: True
+      epochs: 50
+      batch_size: 512
+      factors: 64
+      lr: 0.001
+      reg_w: 0.1
+      reg_b: 0.001
+
